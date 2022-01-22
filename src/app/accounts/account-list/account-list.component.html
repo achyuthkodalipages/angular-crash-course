@@ -1,0 +1,27 @@
+<h1>{{ count }}</h1>
+
+<button class="btn btn-danger" (click)="incrCount()">Incr Count</button>
+<button class="btn btn-danger" (click)="addAccount()">Add Account</button>
+
+<input type="text" [(ngModel)]="account" />
+
+Two way data binding example : {{ account }}
+
+<h2 *ngIf="count === 3">Count is 10</h2>
+
+<h2 *ngFor="let acc of accounts; index as i">{{ i }} {{ acc.name }}</h2>
+
+<div [ngSwitch]="count">
+    <div *ngSwitchCase="1">
+        <h1>It is 1</h1>
+    </div>
+    <div *ngSwitchCase="2">
+        <h1>It is 2</h1>
+    </div>
+    <div *ngSwitchCase="3">
+        <h1>It is 3</h1>
+    </div>
+    <div *ngSwitchDefault>
+        <h1>It is default</h1>
+    </div>
+</div>

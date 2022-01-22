@@ -1,0 +1,30 @@
+<div class="container px-5 pt-5">
+  <div class="d-flex justify-content-between mb-5">
+    <h1>Loan List</h1>
+    <button class="btn btn-primary" routerLink="/loans/create-loan">
+      Create Loan
+    </button>
+  </div>
+  <table class="table" *ngIf="loans.length >= 1">
+    <thead>
+      <tr>
+        <th>Loan ID</th>
+        <th>Loan Name</th>
+        <th>Maximum Loan Amount</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let loan of loans">
+        <td>{{ loan.id }}</td>
+        <td>{{ loan.type }}</td>
+        <td>Rs. {{ loan.maximumLoan }}/-</td>
+        <td>
+          <button class="btn btn-primary" [routerLink]="['/loans/edit', loan.id]">Edit</button>
+          <button class="btn btn-danger m-2" (click)="deleteLoan(loan.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h1 class="text-center" *ngIf="loans.length === 0">No records available</h1>
+</div>

@@ -1,0 +1,6 @@
+<p>first-one works!</p>
+Loan Name: <h1>{{ loanName + ' India' }}</h1>
+Loan Amount: <h1 [class.isShow]="isClassShow">{{ loanAmount + 2 }}</h1>
+
+<button (click)="updateLoan()">Update Loan Amount</button>
+<app-first-one-child [parentName]="parentName"></app-first-one-child>

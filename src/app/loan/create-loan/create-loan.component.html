@@ -1,0 +1,21 @@
+<div class="container py-5 px-5">
+  <form [formGroup]="loanForm" (ngSubmit)="createLoan()">
+    <div>
+        <label for="">Loan Id</label>
+        <input type="number" formControlName="id" placeholder="Enter Loan Id" />
+      </div>
+    <div>
+      <label for="">Loan Type</label>
+      <input type="text" formControlName="type" placeholder="Enter Loan Type" />
+    </div>
+    <div>
+      <label for="">Maximum Loan</label>
+      <input
+        type="number"
+        formControlName="maximumLoan"
+        placeholder="Enter Maximum Loan Amount"
+      />
+    </div>
+    <button class="btn btn-warning" type="submit">Submit</button>
+  </form>
+</div>
