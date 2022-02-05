@@ -6,18 +6,21 @@ import { LoansListComponent } from './loans-list/loans-list.component';
 import { LoansDetailsComponent } from './loans-details/loans-details.component';
 import { CreateLoanComponent } from './create-loan/create-loan.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { MeterialModule } from '../meterial/meterial.module';
+// import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
     LoansListComponent,
     LoansDetailsComponent,
-    CreateLoanComponent
+    CreateLoanComponent,
   ],
   imports: [
     CommonModule,
     LoanRoutingModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    // MatProgressSpinnerModule
+    MeterialModule,
+  ],
 })
-export class LoanModule { }
+export class LoanModule {}

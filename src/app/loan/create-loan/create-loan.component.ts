@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoanService } from 'src/app/services/loan.service';
 
@@ -10,12 +15,16 @@ import { LoanService } from 'src/app/services/loan.service';
 })
 export class CreateLoanComponent implements OnInit {
   loanForm: FormGroup = this.formBuilder.group({
-    id: new FormControl(),
-    type: new FormControl(),
-    maximumLoan: new FormControl(),
+    id: new FormControl('', [Validators.required]),
+    type: new FormControl(''),
+    maximumLoan: new FormControl('', [
+      Validators.required,
+      Validators.min(10000),
+    ]),
   });
 
   loanId!: number;
+  submitted: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -25,11 +34,22 @@ export class CreateLoanComponent implements OnInit {
   ) {}
 
   createLoan() {
+    this.submitted = true;
     if (this.loanForm.valid) {
-      if(this.loanId) {
-        this.loanService.editLoan(this.loanId, { ...this.loanForm.value });
+      if (this.loanId) {
+        this.loanService
+          .editLoan(this.loanId, { ...this.loanForm.value })
+          .subscribe((response: any) => {
+            console.log('Loan Updated');
+            console.log(response);
+          });
       } else {
-        this.loanService.createLoan({ ...this.loanForm.value });
+        this.loanService
+          .createLoan({ ...this.loanForm.value })
+          .subscribe((response: any) => {
+            console.log('Loan Created');
+            console.log(response);
+          });
       }
       this.loanForm.reset();
       this.router.navigate(['/loans/list']);
@@ -38,10 +58,11 @@ export class CreateLoanComponent implements OnInit {
 
   ngOnInit(): void {
     const loanId: any = this.ar.snapshot.paramMap.get('loanId');
-    if(loanId) {
+    if (loanId) {
       this.loanId = parseInt(loanId);
-      const loan = this.loanService.getLoanById(this.loanId);
-      this.loanForm.patchValue(loan);
+      this.loanService.getLoanById(this.loanId).subscribe((response) => {
+        this.loanForm.patchValue(response);
+      });
     }
   }
 }

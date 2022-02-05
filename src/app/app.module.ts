@@ -8,6 +8,8 @@ import { ErrorComponent } from './error/error.component';
 import { PathVariableComponent } from './path-variable/path-variable.component';
 import { TestOneComponent } from './test-one/test-one.component';
 import { TestTwoComponent } from './test-two/test-two.component';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { TestTwoComponent } from './test-two/test-two.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

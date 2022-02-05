@@ -5,26 +5,50 @@
       Create Loan
     </button>
   </div>
-  <table class="table" *ngIf="loans.length >= 1">
-    <thead>
-      <tr>
-        <th>Loan ID</th>
-        <th>Loan Name</th>
-        <th>Maximum Loan Amount</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let loan of loans">
-        <td>{{ loan.id }}</td>
-        <td>{{ loan.type }}</td>
-        <td>Rs. {{ loan.maximumLoan }}/-</td>
-        <td>
-          <button class="btn btn-primary" [routerLink]="['/loans/edit', loan.id]">Edit</button>
-          <button class="btn btn-danger m-2" (click)="deleteLoan(loan.id)">Delete</button>
+  <div class="w-100">
+    <mat-spinner *ngIf="!isLoaded"></mat-spinner>
+    <table
+      mat-table
+      *ngIf="loans | async as loansData"
+      [dataSource]="loansData"
+      class="mat-elevation-z8 w-100"
+    >
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>Loan Id</th>
+        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="loanType">
+        <th mat-header-cell *matHeaderCellDef>Loan Type</th>
+        <td mat-cell *matCellDef="let element">{{ element.type }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="maximumLoan">
+        <th mat-header-cell *matHeaderCellDef>Maximum Loan</th>
+        <td mat-cell *matCellDef="let element">{{ element.maximumLoan }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            class="btn btn-primary"
+            [routerLink]="['/loans/edit', element.id]"
+          >
+            {{ env.edit }}
+          </button>
+          <button class="btn btn-danger m-2" (click)="deleteLoan(element.id)">
+            Delete
+          </button>
         </td>
-      </tr>
-    </tbody>
-  </table>
-  <h1 class="text-center" *ngIf="loans.length === 0">No records available</h1>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+  <h1 class="text-center" *ngIf="(loans | async)?.length === 0 && isLoaded">
+    No records available
+  </h1>
+  <!-- <h1 class="text-center">No records available</h1> -->
 </div>

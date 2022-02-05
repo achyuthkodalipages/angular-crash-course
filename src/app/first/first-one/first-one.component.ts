@@ -13,6 +13,10 @@ export class FirstOneComponent implements OnInit {
 
   constructor() { }
 
+  listenToEmit(data: any) {
+    console.log(data);
+  }
+
   updateLoan() {
     this.loanAmount = this.loanAmount + 1;
     this.isClassShow = !this.isClassShow;

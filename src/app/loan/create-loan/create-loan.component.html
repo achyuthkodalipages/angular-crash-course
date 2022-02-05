@@ -1,9 +1,16 @@
 <div class="container py-5 px-5">
   <form [formGroup]="loanForm" (ngSubmit)="createLoan()">
     <div>
-        <label for="">Loan Id</label>
-        <input type="number" formControlName="id" placeholder="Enter Loan Id" />
+      <label for="">Loan Id</label>
+      <input type="number" formControlName="id" placeholder="Enter Loan Id" />
+      <div>
+        <span
+          class="text-danger"
+          *ngIf="loanForm.controls.id.errors?.required && submitted"
+          >Loan Id is required</span
+        >
       </div>
+    </div>
     <div>
       <label for="">Loan Type</label>
       <input type="text" formControlName="type" placeholder="Enter Loan Type" />
@@ -15,6 +22,18 @@
         formControlName="maximumLoan"
         placeholder="Enter Maximum Loan Amount"
       />
+      <div>
+        <span
+          class="text-danger"
+          *ngIf="loanForm.controls.maximumLoan.errors?.min && submitted"
+          >Maximum Loan Should be more than Rs.10000/-</span
+        >
+        <span
+          class="text-danger"
+          *ngIf="loanForm.controls.maximumLoan.errors?.required && submitted"
+          >Maximum Loan is required</span
+        >
+      </div>
     </div>
     <button class="btn btn-warning" type="submit">Submit</button>
   </form>

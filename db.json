@@ -1,27 +1,32 @@
 {
-    "loans": [
-        {
-            "id": 1,
-            "type": "House Loan",
-            "maximumLoan": 2000
-        },
-        {
-            "id": 2,
-            "type": "Student Loan",
-            "maximumLoan": 3000
-        },
-        {
-            "id": 3,
-            "type": "Bike Loan",
-            "maximumLoan": 4000
-        },
-        {
-            "id": 4,
-            "type": "Gold Loan",
-            "maximumLoan": 5000
-        }
-    ],
-    "users": [],
-    "deposits": [],
-    "insurance": []
+  "loans": [
+    {
+      "id": 1,
+      "type": "House Loan",
+      "maximumLoan": 2000
+    },
+    {
+      "id": 2,
+      "type": "Student Loan",
+      "maximumLoan": 30002
+    },
+    {
+      "id": 3,
+      "type": "Bike Loan",
+      "maximumLoan": 60000
+    },
+    {
+      "id": 4,
+      "type": "Gold Loan",
+      "maximumLoan": 50000
+    },
+    {
+      "id": 5,
+      "type": "Mortgage Loan",
+      "maximumLoan": 1234
+    }
+  ],
+  "users": [],
+  "deposits": [],
+  "insurance": []
 }
